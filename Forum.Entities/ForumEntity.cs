@@ -2,6 +2,6 @@
 {
     public class ForumEntity
     {
-
+        public int Id { get; set; }
     }
 }
