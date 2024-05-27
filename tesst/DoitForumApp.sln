@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forum.Entities", "..\Forum.Entities\Forum.Entities.csproj", "{EA48D694-1079-4891-8690-08ACA406D1C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forum.Data", "..\Forum.Data\Forum.Data.csproj", "{317E32D7-3C42-4D65-B22D-622742ADB0D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{EA48D694-1079-4891-8690-08ACA406D1C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA48D694-1079-4891-8690-08ACA406D1C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA48D694-1079-4891-8690-08ACA406D1C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{317E32D7-3C42-4D65-B22D-622742ADB0D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{317E32D7-3C42-4D65-B22D-622742ADB0D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{317E32D7-3C42-4D65-B22D-622742ADB0D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{317E32D7-3C42-4D65-B22D-622742ADB0D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +44,7 @@ Global
 		{87325FB7-0BBD-4076-B601-0695749E6CDC} = {0AAAF9B8-0155-4883-B5AB-43E5E9C8D83F}
 		{07BA7B34-1BA4-4482-95B8-A594D8F35EB8} = {F8AC576D-221C-4183-84E1-D6CFA7776761}
 		{EA48D694-1079-4891-8690-08ACA406D1C8} = {1F4490FD-97F5-4DE2-89AD-BBB74D20D528}
+		{317E32D7-3C42-4D65-B22D-622742ADB0D2} = {07BA7B34-1BA4-4482-95B8-A594D8F35EB8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09664154-2028-4BD1-90D0-25A73F8E36A2}

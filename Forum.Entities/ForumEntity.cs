@@ -31,7 +31,14 @@ namespace Forum.Entities
         public string Description { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }
 
+
+        [Required]
+        public Status Status { get; set; } = Status.Active;
+
+        [Required]
+        public State State { get; set; } = State.Pending;
     }
 }
