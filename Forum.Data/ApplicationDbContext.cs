@@ -1,5 +1,7 @@
 ﻿using Forum.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Reflection.Emit;
 
 namespace Forum.Data
 {
@@ -9,6 +11,14 @@ namespace Forum.Data
         {
 
         }
+
+        //მონაცემების წამოღება dataseeder-იდან.
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.SeedForum();
+        }
+
         public DbSet<ForumEntity> Forum { get; set; }
 
     }
