@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Forum.Contracts
 {
-    public interface IForumRepository
+    public interface IForumRepository : ISave
     {
         Task<List<ForumEntity>> GetAllAsync(); // მოგვაქვს ყველა
         Task<List<ForumEntity>> GetAllAsync(Expression<Func<ForumEntity, bool>> filter); // იღებს დელეგატს

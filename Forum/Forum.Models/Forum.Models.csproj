@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Forum.Entities\Forum.Entities.csproj" />
-    <ProjectReference Include="..\Forum.Models\Forum.Models.csproj" />
   </ItemGroup>
 
 </Project>

@@ -56,6 +56,11 @@ namespace Forum.Repositories
                 .FirstOrDefaultAsync(filter);
         }
 
+        public async Task Save()
+        {
+            await _context.SaveChangesAsync();
+        }
+
         public async Task UpdateAsync(ForumEntity entity)
         {
            if (entity !=null)
