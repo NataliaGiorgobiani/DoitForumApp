@@ -18,19 +18,6 @@ namespace Forum.Models
 
         [Required]
         [StringLength(50)]
-        public string User { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string Email { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string Password { get; set; }
-
-
-        [Required]
-        [StringLength(50)]
         public string Title { get; set; }
 
         [Required]

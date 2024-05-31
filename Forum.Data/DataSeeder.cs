@@ -40,7 +40,7 @@ namespace Forum.Data
              },
              new ForumEntity()
              {
-                 Id = 2,
+                 Id = 4,
                  Title = "ტესტი4",
                  Description = " ტესტ საკითხი 444444",
                  CreatedDate = DateTime.Now,
