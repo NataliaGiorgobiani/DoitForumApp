@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240531122204_initial")]
+    [Migration("20240602204037_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -59,7 +59,7 @@ namespace Forum.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 31, 16, 22, 3, 870, DateTimeKind.Local).AddTicks(1483),
+                            CreatedDate = new DateTime(2024, 6, 3, 0, 40, 37, 383, DateTimeKind.Local).AddTicks(3113),
                             Description = " ტესტ საკითხი 111111111",
                             State = 0,
                             Status = 1,
@@ -68,7 +68,7 @@ namespace Forum.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 5, 31, 16, 22, 3, 870, DateTimeKind.Local).AddTicks(1496),
+                            CreatedDate = new DateTime(2024, 6, 3, 0, 40, 37, 383, DateTimeKind.Local).AddTicks(3126),
                             Description = " ტესტ საკითხი 222222",
                             State = 0,
                             Status = 1,
@@ -77,7 +77,7 @@ namespace Forum.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 5, 31, 16, 22, 3, 870, DateTimeKind.Local).AddTicks(1497),
+                            CreatedDate = new DateTime(2024, 6, 3, 0, 40, 37, 383, DateTimeKind.Local).AddTicks(3127),
                             Description = " ტესტ საკითხი 333333",
                             State = 0,
                             Status = 1,
@@ -86,7 +86,7 @@ namespace Forum.Data.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 5, 31, 16, 22, 3, 870, DateTimeKind.Local).AddTicks(1499),
+                            CreatedDate = new DateTime(2024, 6, 3, 0, 40, 37, 383, DateTimeKind.Local).AddTicks(3128),
                             Description = " ტესტ საკითხი 444444",
                             State = 0,
                             Status = 1,
