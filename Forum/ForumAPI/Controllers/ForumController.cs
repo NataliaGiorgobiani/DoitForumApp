@@ -1,10 +1,11 @@
 ﻿using Forum.Contracts;
+using Forum.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ForumAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/forum")]
     [ApiController]
     public class ForumController : ControllerBase
     {
@@ -20,6 +21,13 @@ namespace ForumAPI.Controllers
         {
             var result = await _forumServices.GetAllAsync();
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult>Add([FromForm] ForumForAddingDto model)
+        {
+            await _forumServices.AddAsync(model);
+            return Ok(model);
         }
     }
 }

@@ -7,7 +7,7 @@ using Forum.Service.Exeptions;
 
 namespace Forum.Service.Implementations
 {
-    internal class ForumService : IForumServices
+    public class ForumService : IForumServices
     {
         private readonly IForumRepository _forumRepository;
         private readonly IMapper _mapper;

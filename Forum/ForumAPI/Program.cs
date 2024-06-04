@@ -9,6 +9,11 @@ namespace ForumAPI
 
             // Add services to the container.
             builder.AddDBContext();
+
+            builder.AddIdentity();
+            builder.ConfigurJwtOptions();
+            builder.AddAuthentication();
+            builder.AddScopedServices();
             builder.AddControllers();
             builder.AddEndpointsApiExplorer();
             builder.AddSwaggerGen();
@@ -23,12 +28,9 @@ namespace ForumAPI
             }
 
             app.UseHttpsRedirection();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
-
             app.MapControllers();
-
             app.Run();
         }
     }
