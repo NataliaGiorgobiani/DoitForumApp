@@ -92,5 +92,16 @@ namespace ForumAPI
         {
             builder.Services.AddSwaggerGen();
         }
+
+        public static void AddCors(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: builder.Configuration.GetValue<string>("Cors:AllowOrigin"), policy =>
+                {
+                    policy.AllowAnyOrigin();
+                });
+            });
+        }
     }
 }

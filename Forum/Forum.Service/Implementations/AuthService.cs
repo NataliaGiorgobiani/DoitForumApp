@@ -32,12 +32,14 @@ namespace Forum.Service.Implementations
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName.ToLower() == loginRequestDto.UserName.ToLower());
             bool isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
+
             if (user == null || isValid == false)
             {
                 return new LoginResponseDto()
                 {
-                    Token = string.Empty,
-                    User = null
+                    User = null,
+                    Token = string.Empty
+                    
                 };
             }
             var roles = await _userManager.GetRolesAsync(user);
@@ -45,11 +47,11 @@ namespace Forum.Service.Implementations
 
             UserDto userDto = new()
             {
-                Id = user.Id,
-                Email = user.Email
+                Email = user.Email,
+                Id = user.Id
             };
 
-            LoginResponseDto result = new()
+            LoginResponseDto result = new LoginResponseDto()
             {
                 User = userDto,
                 Token = token
@@ -64,12 +66,13 @@ namespace Forum.Service.Implementations
                 UserName = registrationRequestDto.Email,
                 NormalizedUserName = registrationRequestDto.Email.ToUpper(),
                 Email = registrationRequestDto.Email,
-                NormalizedEmail = registrationRequestDto.Email.ToUpper()
+                NormalizedEmail = registrationRequestDto.Email.ToUpper(),
+              
             };
 
             try
             {
-                IdentityResult result = await _userManager.CreateAsync(user);
+                IdentityResult result = await _userManager.CreateAsync(user, registrationRequestDto.Password);
                 if (result.Succeeded)
                 {
                     var userToReturn = await _context.Users.FirstOrDefaultAsync(x => x.Email.ToLower() == registrationRequestDto.Email.ToLower());

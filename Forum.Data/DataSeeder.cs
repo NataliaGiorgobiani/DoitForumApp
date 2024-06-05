@@ -80,7 +80,7 @@ namespace Forum.Data
                        Id = "20f61fa1-996f-48f8-857b-74d30f54bd57",
                        UserName = "natalia.giorgobiani1@gmail.com",
                        NormalizedUserName = "NATALIA>GIORGOBIANI1@GMAIL.COM",
-                       Email = "atalia.giorgobiani1@gmail.com",
+                       Email = "natalia.giorgobiani1@gmail.com",
                        NormalizedEmail = "NATALIA>GIORGOBIANI1@GMAIL.COM",
                        EmailConfirmed = false,
                        PasswordHash = hasher.HashPassword(new IdentityUser(), "Natalia1"),
