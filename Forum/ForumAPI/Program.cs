@@ -17,6 +17,7 @@ namespace ForumAPI
             builder.AddControllers();
             builder.AddEndpointsApiExplorer();
             builder.AddSwaggerGen();
+            builder.AddCors();
 
             var app = builder.Build();
 
@@ -28,6 +29,7 @@ namespace ForumAPI
             }
 
             app.UseHttpsRedirection();
+            app.UseCors(builder.Configuration.GetValue<string>("Cors:AllowOrigin"));
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
