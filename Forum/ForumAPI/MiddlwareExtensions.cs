@@ -20,7 +20,7 @@ namespace ForumAPI
         {
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerLocalConnection")));
         }
-        public static void ConfigureJwtOptions(this WebApplicationBuilder builder) => builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSettings:JwtOptions"));
+                public static void ConfigureJwtOptions(this WebApplicationBuilder builder) => builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSettings:JwtOptions"));
 
         public static void AddIdentity(this WebApplicationBuilder builder)
         {
@@ -42,9 +42,9 @@ namespace ForumAPI
         {
             JwtOptions jwtOptions = new();
 
-            var secret = builder.Configuration.GetValue<string>("ApSettings:JwtOptions:Secret");
-            var issuer = builder.Configuration.GetValue<string>("ApSettings:JwtOptions:Issuer");
-            var audience = builder.Configuration.GetValue<string>("ApSettings:JwtOptions:Audience");
+            var secret = builder.Configuration.GetValue<string>("ApiSettings:JwtOptions:Secret");
+            var issuer = builder.Configuration.GetValue<string>("ApiSettings:JwtOptions:Issuer");
+            var audience = builder.Configuration.GetValue<string>("ApiSettings:JwtOptions:Audience");
             var key = Encoding.ASCII.GetBytes(secret);
 
             builder.Services.AddAuthentication(options =>
@@ -67,7 +67,7 @@ namespace ForumAPI
             });
         }
 
-        public static void ConfigurJwtOptions(this WebApplicationBuilder builder) => builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApSettings:JwtOptions"));
+        public static void ConfigurJwtOptions(this WebApplicationBuilder builder) => builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSettings:JwtOptions"));
       
 
         public static void AddScopedServices(this WebApplicationBuilder builder)
