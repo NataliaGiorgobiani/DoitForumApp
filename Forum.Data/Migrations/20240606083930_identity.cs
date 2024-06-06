@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Forum.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Identity : Migration
+    public partial class identity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -50,6 +50,21 @@ namespace Forum.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Comment",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ForumEntityId = table.Column<int>(type: "int", nullable: false),
+                    TopicComent = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    UserID = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comment", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -172,9 +187,18 @@ namespace Forum.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "20f61fa1-996f-48f8-857b-74d30f54bd57", 0, "d8ecf148-dd18-4ce5-a863-20df58292365", "atalia.giorgobiani1@gmail.com", false, true, null, "NATALIA>GIORGOBIANI1@GMAIL.COM", "NATALIA>GIORGOBIANI1@GMAIL.COM", "AQAAAAIAAYagAAAAEGOQxXLQWSFmjPvqf9xrI6S33e/QVcB74TAALDTyiFH2O8/eHj9gbAjQfFbJa33wRg==", "551222222", false, "25e0c194-af39-4c2f-b6ee-b15682451544", false, "natalia.giorgobiani1@gmail.com" },
-                    { "313ce806-e990-429e-be31-da62ef5f668d", 0, "27f4f3ec-dac9-4ee5-91b0-543e1f0bb2ad", "Jonsnow@gmail.com", false, true, null, "JONSNOW@GMAIL.COM", "JONSNOW@GMAIL.COM", "AQAAAAIAAYagAAAAELtvd9w/VGzeRN8pBYfHSFzVjpUR+iU4YO8bzl8xN+Ep+wDp2cMBFxYUoMDe+s69Zg==", "551333333", false, "5d159a3f-5877-47cf-97f4-4a4cbcff4da5", false, "Jonsnow@gmail.com" },
-                    { "b6171e21-d7a2-48a0-9eab-cd132abb905d", 0, "17f0bb5f-2119-41c8-9ef8-b9ace01b1afb", "admin@gmail.com", false, true, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEPo1koKpWamPpB/xl4nncZIFNWn3ZFcB0G5OCJQz1EW1ImCOirU/uo/qyjd2D540KA==", "551111111", false, "d99c20b6-d197-44d5-b0cc-7026847e4e41", false, "admin@gmail.com" }
+                    { "20f61fa1-996f-48f8-857b-74d30f54bd57", 0, "ea5fdd81-7d1a-43c0-b431-239022c44846", "natalia.giorgobiani1@gmail.com", false, true, null, "NATALIA>GIORGOBIANI1@GMAIL.COM", "NATALIA>GIORGOBIANI1@GMAIL.COM", "AQAAAAIAAYagAAAAELs+4Zl7LAWiNimd4hwdhkdYnYfjs4xMutOvScNfu7Kg7wwq75GZzGPlNZy7doR5rg==", "551222222", false, "0303b0c0-9c10-47b4-8d27-81ca035934c7", false, "natalia.giorgobiani1@gmail.com" },
+                    { "313ce806-e990-429e-be31-da62ef5f668d", 0, "c78914a2-84ac-455b-a657-209642942a38", "Jonsnow@gmail.com", false, true, null, "JONSNOW@GMAIL.COM", "JONSNOW@GMAIL.COM", "AQAAAAIAAYagAAAAEK5MJa3qijCEAVPfZnXu0MoAQWx9tc+FXxUrQwKFfu8BefOUTNm2Bm2tGNgT/AOsdw==", "551333333", false, "08d83a7b-eaec-4987-b1b3-45b1dc52c119", false, "Jonsnow@gmail.com" },
+                    { "b6171e21-d7a2-48a0-9eab-cd132abb905d", 0, "87de6c9c-de07-48fc-a2d9-357fabedb557", "admin@gmail.com", false, true, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEBScYINZuODIpZtbM85LdGVMy9Guybc82ndksNB3h1KVmYDMPDiu+PXMLIgXKd8USw==", "551111111", false, "b38e84d8-3ea5-41b3-9ef0-e7bee69c1774", false, "admin@gmail.com" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Comment",
+                columns: new[] { "Id", "ForumEntityId", "TopicComent", "UserID" },
+                values: new object[,]
+                {
+                    { 1, 1, " ეს საკითხი განიხილება .... ", "313ce806-e990-429e-be31-da62ef5f668d" },
+                    { 2, 1, " და და დაააამ .... ", "313ce806-e990-429e-be31-da62ef5f668d" }
                 });
 
             migrationBuilder.UpdateData(
@@ -182,28 +206,28 @@ namespace Forum.Data.Migrations
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "CreatedDate",
-                value: new DateTime(2024, 6, 5, 10, 14, 58, 934, DateTimeKind.Local).AddTicks(6558));
+                value: new DateTime(2024, 6, 6, 12, 39, 29, 535, DateTimeKind.Local).AddTicks(7664));
 
             migrationBuilder.UpdateData(
                 table: "Forum",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "CreatedDate",
-                value: new DateTime(2024, 6, 5, 10, 14, 58, 934, DateTimeKind.Local).AddTicks(6568));
+                value: new DateTime(2024, 6, 6, 12, 39, 29, 535, DateTimeKind.Local).AddTicks(7680));
 
             migrationBuilder.UpdateData(
                 table: "Forum",
                 keyColumn: "Id",
                 keyValue: 3,
                 column: "CreatedDate",
-                value: new DateTime(2024, 6, 5, 10, 14, 58, 934, DateTimeKind.Local).AddTicks(6570));
+                value: new DateTime(2024, 6, 6, 12, 39, 29, 535, DateTimeKind.Local).AddTicks(7681));
 
             migrationBuilder.UpdateData(
                 table: "Forum",
                 keyColumn: "Id",
                 keyValue: 4,
                 column: "CreatedDate",
-                value: new DateTime(2024, 6, 5, 10, 14, 58, 934, DateTimeKind.Local).AddTicks(6571));
+                value: new DateTime(2024, 6, 6, 12, 39, 29, 535, DateTimeKind.Local).AddTicks(7682));
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -272,6 +296,9 @@ namespace Forum.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Comment");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

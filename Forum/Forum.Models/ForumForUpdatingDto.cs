@@ -33,6 +33,9 @@ namespace Forum.Models
 
         [Required]
         public State State { get; set; } = State.Pending;
+
+        [Required]
+        public string ForumUserID { get; set; }
     }
         
 }

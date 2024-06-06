@@ -1,4 +1,5 @@
-﻿using Forum.Models;
+﻿using Forum.Entities;
+using Forum.Models;
 
 namespace Forum.Contracts
 {
@@ -9,5 +10,11 @@ namespace Forum.Contracts
         Task AddAsync(ForumForAddingDto model);
         Task UpdateAsync(ForumForUpdatingDto model);
         Task DeleteAsync(int id);
+
+        Task<List<CommentForGettingDto>> GetAllCommentsAsync();
+        Task<CommentForGettingDto> GetSingleCommentsAsync(int id);
+        Task AddCommentAsync(CommentForAddingDto model);
+        Task UpdateCommentAsync(CommentForUpdatingDto model);
+        Task DeleteCommentAsync(int id);
     }
 }

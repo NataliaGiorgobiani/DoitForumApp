@@ -7,6 +7,7 @@ namespace Forum.Data
 {
     public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
+
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
@@ -19,9 +20,11 @@ namespace Forum.Data
             modelBuilder.SeedUsers();
             modelBuilder.SeedRoles();
             modelBuilder.SeedUserRoles();
+            modelBuilder.SeedComments();
         }
 
         public DbSet<ForumEntity> Forum { get; set; }
+        public DbSet<Comments> Comment { get; set; }
 
     }
 }

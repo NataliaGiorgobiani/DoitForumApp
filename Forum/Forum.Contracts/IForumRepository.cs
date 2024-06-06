@@ -1,6 +1,7 @@
 ﻿using Forum.Entities;
 using System.Linq.Expressions;
 
+
 namespace Forum.Contracts
 {
     public interface IForumRepository : ISave
@@ -13,5 +14,12 @@ namespace Forum.Contracts
         Task UpdateAsync(ForumEntity entity);
         void Delete(ForumEntity entity);
 
+        Task<List<Comments>> GetAllCommentsAsync();
+        Task<List<Comments>> GetAllCommentsAsync(Expression<Func<Comments, bool>> filter);
+        Task<List<Comments>> GetSingleCommentsAsync(Expression<Func<Comments, bool>> filter);
+        Task AddCommentAsync(Comments comment);
+        Task UpdateCommentAsync(Comments comment);
+        void DeleteCommentAsync(Comments comment);
+        void DeleteCommentAsync(List<Comments> result);
     }
 }

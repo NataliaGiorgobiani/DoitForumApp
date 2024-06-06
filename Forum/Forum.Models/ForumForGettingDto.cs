@@ -18,5 +18,6 @@ namespace Forum.Models
         public Status Status { get; set; }
 
         public State State { get; set; }
+
     }
 }

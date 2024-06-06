@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240605061459_Identity")]
-    partial class Identity
+    [Migration("20240606083930_identity")]
+    partial class identity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,47 @@ namespace Forum.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Forum.Entities.Comments", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ForumEntityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TopicComent")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Comment");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ForumEntityId = 1,
+                            TopicComent = " ეს საკითხი განიხილება .... ",
+                            UserID = "313ce806-e990-429e-be31-da62ef5f668d"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ForumEntityId = 1,
+                            TopicComent = " და და დაააამ .... ",
+                            UserID = "313ce806-e990-429e-be31-da62ef5f668d"
+                        });
+                });
 
             modelBuilder.Entity("Forum.Entities.ForumEntity", b =>
                 {
@@ -59,7 +100,7 @@ namespace Forum.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 6, 5, 10, 14, 58, 934, DateTimeKind.Local).AddTicks(6558),
+                            CreatedDate = new DateTime(2024, 6, 6, 12, 39, 29, 535, DateTimeKind.Local).AddTicks(7664),
                             Description = " ტესტ საკითხი 111111111",
                             State = 0,
                             Status = 1,
@@ -68,7 +109,7 @@ namespace Forum.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 6, 5, 10, 14, 58, 934, DateTimeKind.Local).AddTicks(6568),
+                            CreatedDate = new DateTime(2024, 6, 6, 12, 39, 29, 535, DateTimeKind.Local).AddTicks(7680),
                             Description = " ტესტ საკითხი 222222",
                             State = 0,
                             Status = 1,
@@ -77,7 +118,7 @@ namespace Forum.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 6, 5, 10, 14, 58, 934, DateTimeKind.Local).AddTicks(6570),
+                            CreatedDate = new DateTime(2024, 6, 6, 12, 39, 29, 535, DateTimeKind.Local).AddTicks(7681),
                             Description = " ტესტ საკითხი 333333",
                             State = 0,
                             Status = 1,
@@ -86,7 +127,7 @@ namespace Forum.Data.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 6, 5, 10, 14, 58, 934, DateTimeKind.Local).AddTicks(6571),
+                            CreatedDate = new DateTime(2024, 6, 6, 12, 39, 29, 535, DateTimeKind.Local).AddTicks(7682),
                             Description = " ტესტ საკითხი 444444",
                             State = 0,
                             Status = 1,
@@ -229,16 +270,16 @@ namespace Forum.Data.Migrations
                         {
                             Id = "b6171e21-d7a2-48a0-9eab-cd132abb905d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "17f0bb5f-2119-41c8-9ef8-b9ace01b1afb",
+                            ConcurrencyStamp = "87de6c9c-de07-48fc-a2d9-357fabedb557",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPo1koKpWamPpB/xl4nncZIFNWn3ZFcB0G5OCJQz1EW1ImCOirU/uo/qyjd2D540KA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBScYINZuODIpZtbM85LdGVMy9Guybc82ndksNB3h1KVmYDMPDiu+PXMLIgXKd8USw==",
                             PhoneNumber = "551111111",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d99c20b6-d197-44d5-b0cc-7026847e4e41",
+                            SecurityStamp = "b38e84d8-3ea5-41b3-9ef0-e7bee69c1774",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -246,16 +287,16 @@ namespace Forum.Data.Migrations
                         {
                             Id = "20f61fa1-996f-48f8-857b-74d30f54bd57",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d8ecf148-dd18-4ce5-a863-20df58292365",
-                            Email = "atalia.giorgobiani1@gmail.com",
+                            ConcurrencyStamp = "ea5fdd81-7d1a-43c0-b431-239022c44846",
+                            Email = "natalia.giorgobiani1@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedEmail = "NATALIA>GIORGOBIANI1@GMAIL.COM",
                             NormalizedUserName = "NATALIA>GIORGOBIANI1@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGOQxXLQWSFmjPvqf9xrI6S33e/QVcB74TAALDTyiFH2O8/eHj9gbAjQfFbJa33wRg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELs+4Zl7LAWiNimd4hwdhkdYnYfjs4xMutOvScNfu7Kg7wwq75GZzGPlNZy7doR5rg==",
                             PhoneNumber = "551222222",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "25e0c194-af39-4c2f-b6ee-b15682451544",
+                            SecurityStamp = "0303b0c0-9c10-47b4-8d27-81ca035934c7",
                             TwoFactorEnabled = false,
                             UserName = "natalia.giorgobiani1@gmail.com"
                         },
@@ -263,16 +304,16 @@ namespace Forum.Data.Migrations
                         {
                             Id = "313ce806-e990-429e-be31-da62ef5f668d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "27f4f3ec-dac9-4ee5-91b0-543e1f0bb2ad",
+                            ConcurrencyStamp = "c78914a2-84ac-455b-a657-209642942a38",
                             Email = "Jonsnow@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = true,
                             NormalizedEmail = "JONSNOW@GMAIL.COM",
                             NormalizedUserName = "JONSNOW@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAELtvd9w/VGzeRN8pBYfHSFzVjpUR+iU4YO8bzl8xN+Ep+wDp2cMBFxYUoMDe+s69Zg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEK5MJa3qijCEAVPfZnXu0MoAQWx9tc+FXxUrQwKFfu8BefOUTNm2Bm2tGNgT/AOsdw==",
                             PhoneNumber = "551333333",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5d159a3f-5877-47cf-97f4-4a4cbcff4da5",
+                            SecurityStamp = "08d83a7b-eaec-4987-b1b3-45b1dc52c119",
                             TwoFactorEnabled = false,
                             UserName = "Jonsnow@gmail.com"
                         });

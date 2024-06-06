@@ -1,6 +1,7 @@
 ﻿using Forum.Contracts;
 using Forum.Data;
 using Forum.Entities;
+using Forum.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Forum.Repositories
 {
@@ -63,7 +65,7 @@ namespace Forum.Repositories
 
         public async Task UpdateAsync(ForumEntity entity)
         {
-           if (entity !=null)
+            if (entity != null)
             {
                 var forumToUpdate = await _context.Forum.FirstOrDefaultAsync(x => x.Id == entity.Id);
                 if (forumToUpdate != null)
@@ -77,6 +79,64 @@ namespace Forum.Repositories
                     _context.Forum.Update(forumToUpdate);
                 }
             }
+        }
+
+        public async Task AddCommentAsync(Comments comment) 
+        { 
+            if(comment != null)
+            {
+                await _context.Comment.AddAsync(comment);
+            }
+        
+        }
+        public async void DeleteCommentAsync(Comments comment)
+        {
+            if (comment != null)
+            {
+                _context.Comment.Remove(comment);
+                await _context.SaveChangesAsync();
+            }
+        }
+        public async Task<List<Comments>> GetAllCommentsAsync()
+        {
+            return await _context.Comment
+                .ToListAsync();
+        }
+
+        public async Task<List<Comments>> GetAllCommentsAsync(Expression<Func<Comments, bool>> filter)
+        {
+            return await _context.Comment
+                .Where(filter)
+                .ToListAsync();
+        }
+        public async Task<Comments> GetSingleCommentsAsync(Expression<Func<Comments, bool>> filter)
+        {
+            return await _context.Comment.FirstOrDefaultAsync(filter);
+        }
+
+        public async Task UpdateCommentAsync(Comments comment)
+        {
+            if (comment != null)
+            {
+                var commentToUpdate = await _context.Comment.FirstOrDefaultAsync(x => x.Id == comment.Id); // Ensure you query the Comments DbSet
+                if (commentToUpdate != null)
+                {
+                    commentToUpdate.TopicComent = comment.TopicComent;
+                   
+
+                    _context.Comment.Update(commentToUpdate);
+                }
+            }
+        }
+
+        Task<List<Comments>> IForumRepository.GetSingleCommentsAsync(Expression<Func<Comments, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteCommentAsync(List<Comments> result)
+        {
+            throw new NotImplementedException();
         }
     }
 }
