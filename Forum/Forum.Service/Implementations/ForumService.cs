@@ -123,5 +123,10 @@ namespace Forum.Service.Implementations
         {
             throw new NotImplementedException();
         }
+
+        public Task AddCommentAsync(ForumForAddingDto model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

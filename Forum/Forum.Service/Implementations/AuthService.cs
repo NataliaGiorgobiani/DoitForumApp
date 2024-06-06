@@ -43,6 +43,7 @@ namespace Forum.Service.Implementations
                 };
             }
             var roles = await _userManager.GetRolesAsync(user);
+          
             var token = _jwtTokenGenerator.GenerateToken(user, roles);
 
             UserDto userDto = new()
@@ -82,6 +83,8 @@ namespace Forum.Service.Implementations
                         {
                             await _roleManager.CreateAsync(new IdentityRole(_user));
                         }
+                        await _userManager.AddToRoleAsync(user, _user);
+
                         UserDto userDto = new()
                         {
                             Email = userToReturn.Email,

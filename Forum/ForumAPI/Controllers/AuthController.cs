@@ -1,12 +1,12 @@
 ﻿using Forum.Contracts;
 using Forum.Models.Identity;
 using Forum.Service.Implementations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ForumAPI.Controllers
 {
     [Route("api/auth")]
-
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -16,6 +16,7 @@ namespace ForumAPI.Controllers
             _authService = authService;
         }
 
+        [Authorize(Policy = "DoubleRolePolicy")]
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromForm] RegistrationRequestDto model)
         {
@@ -30,6 +31,7 @@ namespace ForumAPI.Controllers
             }
         }
 
+        [Authorize(Policy = "DoubleRolePolicy")]
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromForm] LoginRequestDto model)
         {

@@ -83,6 +83,27 @@ namespace ForumAPI
             builder.Services.AddControllers();
         }
 
+        public static void AddAuthorziation(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("DoubleRolePolicy", policy =>
+                {
+                    policy.RequireRole("Admin", "User");
+                });
+
+                options.AddPolicy("Admin", policy =>
+                {
+                    policy.RequireRole("Admin");
+                });
+
+                options.AddPolicy("User", policy =>
+                {
+                    policy.RequireRole("User");
+                });
+            });
+        }
+
         public static void AddEndpointsApiExplorer(this WebApplicationBuilder builder)
         {
             builder.Services.AddEndpointsApiExplorer();

@@ -16,5 +16,6 @@ namespace Forum.Contracts
         Task AddCommentAsync(CommentForAddingDto model);
         Task UpdateCommentAsync(CommentForUpdatingDto model);
         Task DeleteCommentAsync(int id);
+        Task AddCommentAsync(ForumForAddingDto model);
     }
 }

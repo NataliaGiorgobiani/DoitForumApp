@@ -1,12 +1,13 @@
 ﻿using Forum.Contracts;
 using Forum.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ForumAPI.Controllers
 {
-    [Route("api/forum")]
     [ApiController]
+    [Route("api/forum/topic")]
     public class ForumController : ControllerBase
     {
         private readonly IForumServices _forumServices;
@@ -16,6 +17,7 @@ namespace ForumAPI.Controllers
             _forumServices = forumServices;
         }
 
+        [Authorize(Policy = "DoubleRolePolicy")]
         [HttpGet]
         public async Task<IActionResult>All()
         {
@@ -23,6 +25,7 @@ namespace ForumAPI.Controllers
             return Ok(result);
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpPost]
         public async Task<IActionResult>Add([FromForm] ForumForAddingDto model)
         {

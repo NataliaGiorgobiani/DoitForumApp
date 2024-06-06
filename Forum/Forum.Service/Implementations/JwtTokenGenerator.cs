@@ -25,6 +25,7 @@ namespace Forum.Service.Implementations
                 new Claim(JwtRegisteredClaimNames.Sub,applicationUser.Id),
                 new Claim(JwtRegisteredClaimNames.Name,applicationUser.UserName),
                 new Claim(JwtRegisteredClaimNames.Email,applicationUser.Email)
+                
             };
 
             claimList.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));

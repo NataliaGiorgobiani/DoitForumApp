@@ -13,6 +13,7 @@ namespace ForumAPI
             builder.AddIdentity();
             builder.ConfigurJwtOptions();
             builder.AddAuthentication();
+            builder.AddAuthorziation();
             builder.AddScopedServices();
             builder.AddControllers();
             builder.AddEndpointsApiExplorer();
