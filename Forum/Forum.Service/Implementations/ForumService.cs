@@ -12,6 +12,8 @@ namespace Forum.Service.Implementations
         private readonly IForumRepository _forumRepository;
         private readonly IMapper _mapper;
 
+        public int ForumEntityId { get; private set; }
+
         public ForumService(IForumRepository forumRepository)
         {
             _forumRepository = forumRepository;
@@ -40,11 +42,45 @@ namespace Forum.Service.Implementations
         public async Task<List<ForumForGettingDto>> GetAllAsync()
         {
             var raw = await _forumRepository.GetAllAsync();
-
             if (raw.Count == 0) throw new TopicNotFoundExp();
 
-            var result = _mapper.Map<List<ForumForGettingDto>>(raw);
-            return result;
+
+
+            var comments = await _forumRepository.GetAllCommentsAsync();
+
+
+            var groupedComments = comments
+                .GroupBy(c => c.ForumEntityId)
+                .ToDictionary(
+                    g => g.Key,
+                    g => g.Select(comment => new CommentForGettingDto
+                    {
+                        Id = comment.Id,
+                        ForumEntityId = comment.ForumEntityId,
+                        TopicComent = comment.TopicComent,
+                        UserID = comment.UserID
+                    }).ToList()
+                );
+            /*
+                        if (raw.Count == 0) throw new TopicNotFoundExp();
+
+                        var result = _mapper.Map<List<ForumForGettingDto>>(raw);
+
+                        return result;*/
+            var forumDtos = raw.Select(forum => new ForumForGettingDto
+            {
+                Id = forum.Id,
+                Title = forum.Title,
+                Description = forum.Description,
+                CreatedDate = forum.CreatedDate,
+                Status = forum.Status,
+                State = forum.State,
+                Comments = groupedComments.ContainsKey(forum.Id) ? groupedComments[forum.Id] : new List<CommentForGettingDto>(),
+                TotalComments = groupedComments.ContainsKey(forum.Id) ? groupedComments[forum.Id].Count : 0
+            }).ToList();
+
+            return forumDtos;
+
         }
 
         public async Task<ForumForGettingDto> GetAllAsync(int id)
@@ -55,6 +91,7 @@ namespace Forum.Service.Implementations
             if (raw == null) throw new TopicNotFoundExp();
 
             var result = _mapper.Map<ForumForGettingDto>(raw);
+
             return result;
         }
 

@@ -19,5 +19,8 @@ namespace Forum.Models
 
         public State State { get; set; }
 
+        public List<CommentForGettingDto> Comments { get; set; }
+        public int TotalComments { get; set; }
+
     }
 }
