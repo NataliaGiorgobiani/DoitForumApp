@@ -16,7 +16,7 @@ namespace ForumAPI.Controllers
             _authService = authService;
         }
 
-        [Authorize(Policy = "DoubleRolePolicy")]
+        
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromForm] RegistrationRequestDto model)
         {
@@ -31,7 +31,7 @@ namespace ForumAPI.Controllers
             }
         }
 
-        [Authorize(Policy = "DoubleRolePolicy")]
+        //[Authorize(Policy = "DoubleRolePolicy")]
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromForm] LoginRequestDto model)
         {

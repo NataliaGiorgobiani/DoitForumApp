@@ -8,6 +8,7 @@ using System.Net;
 namespace ForumAPI.Controllers
 {
 
+    
     [ApiController]
     [Route("api/forum/comment")]
     public class CommentController : ControllerBase
@@ -36,24 +37,25 @@ namespace ForumAPI.Controllers
             return Ok(model);
         }
 
-        [Authorize(Policy = "DoubleRolePolicy")]
-        [HttpPut]
-        public async Task<IActionResult> UpdateComment([FromRoute] CommentForUpdatingDto model)
-        {
-            await _forumServices.UpdateCommentAsync(model);
-            return Ok(model);
+          [Authorize(Policy = "DoubleRolePolicy")]
+           [HttpPut]
+           public async Task<IActionResult> UpdateComment([FromRoute] CommentForUpdatingDto model)
+           {
+               await _forumServices.UpdateCommentAsync(model);
+               return Ok(model);
 
 
-        }
+           }
 
-        [Authorize(Policy = "Admin")]
-          [HttpDelete("/{id}")]
-          public async Task<IActionResult> Delete(int  id) 
-          {
-             await _forumServices.DeleteCommentAsync(id);
-             return Ok(id);
-          }
+           [Authorize(Policy = "Admin")]
+             [HttpDelete("/{id}")]
+             public async Task<IActionResult> Delete(int  id) 
+             {
+                await _forumServices.DeleteCommentAsync(id);
+                return Ok(id);
+             }
+        
+    }
 
-      }
-    
+   
 }
