@@ -15,7 +15,6 @@ namespace ForumAPI.Controllers
     {
         private readonly IForumServices _forumServices;
 
-
         public CommentController(IForumServices forumServices)
         {
             _forumServices = forumServices;
