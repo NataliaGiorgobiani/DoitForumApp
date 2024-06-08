@@ -28,8 +28,8 @@ namespace Forum.Entities
         [Required]
         public State State { get; set; } = State.Pending;
 
-        //[Required]
-      //  public string ForumUserID { get; set; }
+/*        
+         public string ForumUserID { get; set; }*/
     }
 
     public class Comments

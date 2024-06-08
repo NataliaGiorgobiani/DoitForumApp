@@ -23,6 +23,8 @@ namespace Forum.Service.Implementations
         public async Task AddAsync(ForumForAddingDto model)
         {
             if (model is null) throw new ArgumentNullException("Invalid argument!");
+
+
             var result = _mapper.Map<ForumEntity>(model);
             await _forumRepository.AddAsync(result);
             await _forumRepository.Save();
@@ -75,7 +77,8 @@ namespace Forum.Service.Implementations
                 CreatedDate = forum.CreatedDate,
                 Status = forum.Status,
                 State = forum.State,
-                Comments = groupedComments.ContainsKey(forum.Id) ? groupedComments[forum.Id] : new List<CommentForGettingDto>(),
+/*                ForumUserID = forum.ForumUserID,
+*/                Comments = groupedComments.ContainsKey(forum.Id) ? groupedComments[forum.Id] : new List<CommentForGettingDto>(),
                 TotalComments = groupedComments.ContainsKey(forum.Id) ? groupedComments[forum.Id].Count : 0
             }).ToList();
 

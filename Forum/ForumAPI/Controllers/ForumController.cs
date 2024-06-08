@@ -3,6 +3,7 @@ using Forum.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ForumAPI.Controllers
 {
@@ -27,7 +28,7 @@ namespace ForumAPI.Controllers
 
         [Authorize(Policy = "Admin")]
         [HttpPost]
-        public async Task<IActionResult>Add([FromForm] ForumForAddingDto model)
+        public async Task<IActionResult>Add([FromForm] ForumForAddingDto model )
         {
             await _forumServices.AddAsync(model);
             return Ok(model);

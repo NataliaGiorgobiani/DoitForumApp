@@ -18,7 +18,8 @@ namespace Forum.Models
         public Status Status { get; set; }
 
         public State State { get; set; }
-
+/*        public string ForumUserID { get; set; }
+*/
         public List<CommentForGettingDto> Comments { get; set; }
         public int TotalComments { get; set; }
 
