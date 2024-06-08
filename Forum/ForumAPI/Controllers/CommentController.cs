@@ -28,6 +28,7 @@ namespace ForumAPI.Controllers
             var result = await _forumServices.GetAllCommentsAsync();
             return Ok(result);
         }
+       
 
         [Authorize(Policy = "DoubleRolePolicy")]
         [HttpPost]
