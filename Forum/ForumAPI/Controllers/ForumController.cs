@@ -27,11 +27,28 @@ namespace ForumAPI.Controllers
         }
 
         [Authorize(Policy = "Admin")]
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult>Add([FromForm] ForumForAddingDto model )
         {
             await _forumServices.AddAsync(model);
             return Ok(model);
         }
+
+        [Authorize(Policy = "Admin")]
+        [HttpPost]
+        public async Task<IActionResult> UpdateForum([FromForm] ForumForUpdatingDto model)
+        {
+            await _forumServices.UpdateAsync(model);
+            return Ok(model);
+        }
+
+        [Authorize(Policy = "Admin")]
+        [HttpDelete]
+        public async Task<IActionResult> Delete( int id)
+        {
+            await _forumServices.DeleteAsync(id);
+            return Ok(id);
+        }
+
     }
 }

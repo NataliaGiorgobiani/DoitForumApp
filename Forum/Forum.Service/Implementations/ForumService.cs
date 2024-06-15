@@ -109,7 +109,9 @@ namespace Forum.Service.Implementations
 
         public async Task AddCommentAsync(CommentForAddingDto comment)
         {
+            
             if (comment is null) throw new ArgumentNullException("Invalid argument!");
+
             var result = _mapper.Map<Comments>(comment);
             await _forumRepository.AddCommentAsync(result);
             await _forumRepository.Save();
@@ -121,7 +123,7 @@ namespace Forum.Service.Implementations
             var result = await _forumRepository.GetSingleCommentsAsync(x => x.Id == id);
             if (result == null) throw new TopicNotFoundExp();
 
-            _forumRepository.DeleteCommentAsync(result);
+             _forumRepository.DeleteCommentAsync(result);
             await _forumRepository.Save();
         }
 

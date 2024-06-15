@@ -30,7 +30,7 @@ namespace ForumAPI.Controllers
        
 
         [Authorize(Policy = "DoubleRolePolicy")]
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult> AddComment([FromForm] CommentForAddingDto model)
         {
             await _forumServices.AddCommentAsync(model);
@@ -38,7 +38,7 @@ namespace ForumAPI.Controllers
         }
 
           [Authorize(Policy = "DoubleRolePolicy")]
-           [HttpPut]
+           [HttpPost]
            public async Task<IActionResult> UpdateComment([FromRoute] CommentForUpdatingDto model)
            {
                await _forumServices.UpdateCommentAsync(model);
@@ -48,8 +48,8 @@ namespace ForumAPI.Controllers
            }
 
            [Authorize(Policy = "Admin")]
-             [HttpDelete("/{id}")]
-             public async Task<IActionResult> Delete(int  id) 
+           [HttpDelete]
+            public async Task<IActionResult> Delete(int  id) 
              {
                 await _forumServices.DeleteCommentAsync(id);
                 return Ok(id);

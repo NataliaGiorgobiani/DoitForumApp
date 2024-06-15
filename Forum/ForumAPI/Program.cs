@@ -20,6 +20,9 @@ namespace ForumAPI
             builder.AddSwaggerGen();
             builder.AddCors();
 
+            var mapper = Forum.Service.MappingInitializer.Initialize();
+            builder.Services.AddSingleton(mapper);
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

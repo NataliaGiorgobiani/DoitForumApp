@@ -26,6 +26,8 @@ namespace Forum.Service
                 .ForMember(destination => destination.NormalizedUserName, options => options.MapFrom(source => source.Email.ToUpper()))
                 .ForMember(destination => destination.Email, options => options.MapFrom(source => source.Email))
                 .ForMember(destination => destination.NormalizedEmail, options => options.MapFrom(source => source.Email.ToUpper()));
+
+                config.CreateMap<CommentForAddingDto, Comments>();
             });
             return configuration.CreateMapper();
         }
